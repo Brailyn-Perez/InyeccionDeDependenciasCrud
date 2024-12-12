@@ -57,7 +57,8 @@ namespace CrudApp.DAL.Daos
                     Address = personCreate.Address,
                     City = personCreate.City,
                     Country = personCreate.Country,
-                    CreateDate = DateTime.Now
+                    CreateDate = DateTime.Now,
+                    Deleted = false
 
                 };
 
@@ -134,7 +135,7 @@ namespace CrudApp.DAL.Daos
             return getPerson;
         }
 
-        public void Update(PersonUpdateModel personUpdate)
+        public void Update(GetPersonModel personUpdate)
         {
             try
             {
@@ -176,7 +177,8 @@ namespace CrudApp.DAL.Daos
                     Address = personUpdate.Address,
                     City = personUpdate.City,
                     Country = personUpdate.Country,
-                    UpdateDate = DateTime.Now
+                    UpdateDate = DateTime.Now,
+                    Deleted = false
                 };
 
                 _context.Persons.Update(person);
@@ -188,7 +190,7 @@ namespace CrudApp.DAL.Daos
             }
         }
 
-        public void Delete(PersonRemoveModel personRemove)
+        public void Delete(GetPersonModel personRemove)
         {
 
             try

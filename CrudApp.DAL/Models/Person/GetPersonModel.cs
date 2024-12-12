@@ -13,7 +13,7 @@ namespace CrudApp.DAL.Models.Person
 
         public string? Phone { get; set; }
 
-        public DateOnly? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public string? Address { get; set; }
 
