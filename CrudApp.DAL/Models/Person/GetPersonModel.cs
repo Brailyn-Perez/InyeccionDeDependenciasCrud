@@ -20,5 +20,9 @@ namespace CrudApp.DAL.Models.Person
         public string? City { get; set; }
 
         public string? Country { get; set; }
+
+        public DateTime? DeletedDate { get; set; }
+
+        public bool? Deleted { get; set; }
     }
 }

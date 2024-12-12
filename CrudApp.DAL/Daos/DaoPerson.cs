@@ -195,7 +195,7 @@ namespace CrudApp.DAL.Daos
 
             try
             {
-                
+
                 if (personRemove is null)
                 {
                     throw new DaoPersonException("No puedes mandar personas nulas");
@@ -203,27 +203,20 @@ namespace CrudApp.DAL.Daos
                 if (personRemove.Id <= 0)
                 {
                     throw new DaoPersonException("El Id de una persona no puede ser negativo o 0");
-                
+
                 }
 
-                var getPersonById = GetByID(personRemove.Id);
+                var getPersonById = _context.Persons.FirstOrDefault(x => x.Id == personRemove.Id);
 
-                Person person = new Person()
+                if (getPersonById is null)
                 {
-                    Id = getPersonById.Id,
-                    FirstName = getPersonById.FirstName,
-                    LastName = getPersonById.LastName,
-                    Email = getPersonById.Email,
-                    Phone = getPersonById.Phone,
-                    BirthDate = getPersonById.BirthDate,
-                    Address = getPersonById.Address,
-                    City = getPersonById.City,
-                    Country = getPersonById.Country,
-                    DeletedDate = DateTime.Now,
-                    Deleted = true
-                };
-
-                _context.Persons.Update(person);
+                    throw new DaoPersonException("No se encontro la persona a eliminar");
+                }
+                else
+                {
+                    getPersonById.DeletedDate = DateTime.Now;
+                    getPersonById.Deleted = true;
+                }
                 _context.SaveChanges();
             }
             catch (Exception ex)
